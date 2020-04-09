@@ -1,0 +1,11 @@
+# Suppression de tous les projets dans le répertoire "django_projects"
+
+djsuppallprojects ()
+{
+	read -p "Etês vous sûr de vouloir supprimer tous les projets présent dans le répertoire \"django_projects\"? (y/n)" reponse
+
+	if [ "$reponse" == "y" -o "$reponse" == "Y" ]; then
+		rm -rf ${DJ_DIR_PROJECTS_PATH}/* ${DJ_DIR_VENV_PROJECTS_PATH}/*
+		echo "Projects avec environnements virtuels supprimés"
+	fi
+}

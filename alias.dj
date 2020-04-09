@@ -1,0 +1,12 @@
+# Django Commandes Alias
+
+alias djstartapp="${DJ_PROJECT_PATH}/manage.py startapp"
+alias djrunserver="${DJ_PROJECT_PATH}/manage.py runserver"
+alias djmakemigrate="${DJ_PROJECT_PATH}/manage.py makemigrate"
+alias djmigrate="${DJ_PROJECT_PATH}/manage.py migrate"
+alias djshell="${DJ_PROJECT_PATH}/manage.py shell"
+
+# alias djcreateproject="${DIR_CONFIG_PATH}/create_project.dj"
+# alias djcreateapps="${DIR_CONFIG_PATH}/create_apps.dj"
+# alias djlaunchproject="source ${DIR_CONFIG_PATH}/launch_project.dj"
+# alias djuseproject="source ${DIR_CONFIG_PATH}/use_project.dj"

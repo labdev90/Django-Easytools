@@ -1,0 +1,24 @@
+. $HOME/.easytools/django/settings.dj
+
+
+# Variables dans le fichier use_project.dj :
+#	DJ_PROJECT_NAME
+#	DJ_PROJECT_PATH
+#	DJ_PROJECT_VENV_PATH
+. ${DJ_PROJECT_TO_USE}
+
+
+# Alias :
+. ${DJ_DIR_CONFIG_PATH}/${DJ_ALIAS}
+
+
+# Fonctions :
+for fonction in ${DJ_DIR_COMMAND_FONCTUN_PATH}/*
+do
+	. ${fonction}
+done
+
+
+# GCAUTO Temporaire
+. ${DJ_DIR_CONFIG_PATH}/dj_gcauto.sh
+

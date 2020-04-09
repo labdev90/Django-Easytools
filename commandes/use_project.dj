@@ -1,0 +1,21 @@
+# Projet à utiliser
+
+djuseproject ()
+{ # Initialise le projet a utiliser
+	if [ -z ${1} ]; then
+		echo "ErrorCommande : Il manque un argument."
+		echo "Use : djuseproject <nom_du_projet>"
+		echo "Remplacer <nom_du_projet> par le nom du projet que vous voulez lancer."
+
+	elif [ -d "${DJ_DIR_PROJECTS_PATH}/${1}" -a -d "${DJ_DIR_VENV_PROJECTS_PATH}/venv.${1}"  -o "${2}" == "djcreateproject" ]; then
+		echo "DJ_PROJECT_NAME=\"${1}\"" > ${DJ_PROJECT_TO_USE}
+		echo "DJ_PROJECT_PATH=\"${DJ_DIR_PROJECTS_PATH}/${1}\"" >> ${DJ_PROJECT_TO_USE}
+		echo "DJ_PROJECT_VENV_PATH=\"${DJ_DIR_VENV_PROJECTS_PATH}/venv.${1}\"" >> ${DJ_PROJECT_TO_USE}
+		source  $HOME/.bashrc 1>/dev/null
+
+	else
+		echo "ErrorNotExist : le projet ${1} semble ne pas exister :"
+		echo "Chemin : ${DJ_DIR_PROJECTS_PATH}/${1}" 
+		echo "Vérifier le nom et/ou le répertoire."
+	fi
+}

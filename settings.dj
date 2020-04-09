@@ -1,0 +1,19 @@
+# Configuration pour organiser ses projets Django comme on le souhaite.
+DJ_DIR_CONFIG_PATH="$HOME/.easytools/django"
+DJ_DIR_COMMAND_FONCTUN_PATH="${DJ_DIR_CONFIG_PATH}/commandes"
+
+DJ_DIR_PROJECTS_PATH="$HOME/labtech/labdev/web/django_projects"
+DJ_DIR_VENV_PROJECTS_PATH="${DJ_DIR_PROJECTS_PATH}/.virtualEnv"
+
+
+DJ_PROJECT_TO_USE="${DJ_DIR_CONFIG_PATH}/project_to_use.dj"
+
+
+# Alias
+DJ_ALIAS="alias.dj"
+
+# Fichier settings_static qui sera un fichier static qui n'aura pas vocation a etre déplacé
+# Tous les fichiers vont envoyer leurs path au fichier settings_static :
+# 	- echo "FILE_NAME=\"$PWD/$0\"" >> easytools_files.dj
+#
+# Fichier log djeasytools.log

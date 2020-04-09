@@ -1,0 +1,21 @@
+# Création multiples d'application
+
+djcreateapps ()
+{ # Création des applications
+	if [ -n "${1}" ]; then
+		echo "Création des application :"
+		for i in "$@"
+		do
+			echo "	- djstartapp \"${i}\""
+		done
+		echo "-------------------------"
+		for i in "$@"
+		do
+			djstartapp ${i}
+		done
+	else
+		echo "ErrorCommande : Il manque un argument."
+		echo "Use : djfncrtapp <list_nom_app>"
+		echo "<list_nom_app : est une liste de noms d'applications séparées par un espace"
+	fi
+}

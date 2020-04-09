@@ -1,0 +1,24 @@
+# Lancement du projet à éditer / configurer
+
+djlaunchproject ()
+{
+	if [ -z "${1}" ]; then
+		echo "Utilisation du dernier projet lancé :"
+		echo -e"\t- \"${DJ_PROJECT_NAME}\""
+	elif [ -d "${DJ_DIR_PROJECTS_PATH}/${1}" -a -d "${DJ_DIR_VENV_PROJECTS_PATH}/venv.${1}" ]; then
+		echo "Utilisation du projet \"${1}\""
+		djuseproject ${1} 
+	else
+		echo "ErrorNotExist : le projet \"${1}\" n'existe pas :"
+		echo "Path : ${DJ_PROJECT_PATH}" 
+		echo "Vérifier le nom et/ou le répertoire."
+	fi
+
+	source ${DJ_PROJECT_VENV_PATH}/bin/activate
+	subl ${DJ_PROJECT_PATH}
+
+	#mettre en option -r ou --runserv
+	#verifier si deja un runserver lancé, si oui, changer port 8000 + 1 (http://localhost:8001)
+	open http://localhost:8000
+	python ${DJ_PROJECT_PATH}/manage.py runserver
+}

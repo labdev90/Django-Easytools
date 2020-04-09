@@ -1,0 +1,47 @@
+# Création d'un projet
+# Faire un test sur la variable ${1} si elle contient un espace
+
+djcreateproject ()
+{
+	if [ "${1}" == "" ]; then
+		echo "ErrorCommande : il manque un argument."
+		echo "Use : djcreateproject <name_project>"
+		echo "<name_project> ne doit pas contenir d'espace"
+
+	elif [ -d "${DJ_DIR_PROJECTS_PATH}/${1}" ]; then
+		echo "ErrorName : Nom de projet déjà existant"
+		echo "Choisir un autre nom de projet"
+		echo "${FUNCNAME[0]}"
+
+	else
+		if [ ! -d ${DJ_DIR_PROJECTS_PATH} -a -d ${DJ_DIR_VENV_PROJECTS_PATH} ]; then
+			echo "Initialisation du répertoire racine des projets django..."
+			mkdir ${DJ_DIR_PROJECTS_PATH}
+			echo "Initialisation du répertoire racine des environnements virtuels..."
+			mkdir ${DJ_DIR_VENV_PROJECTS_PATH}
+		fi
+		DJ_new_project="${DJ_DIR_PROJECTS_PATH}/${1}"
+		DJ_new_venv_name="venv.${1}"
+		DJ_new_venv_path="${DJ_DIR_VENV_PROJECTS_PATH}/${DJ_new_venv_name}"
+
+		echo "Démarrage de la création du projet..."
+		djuseproject ${1} "${FUNCNAME[0]}"
+		# Positionnement dans le répértoire des environnement virtuels
+		cd ${DJ_DIR_VENV_PROJECTS_PATH}
+		echo "Création de l'environnement virtuel \"${DJ_new_venv_name}\"..."
+		virtualenv ${DJ_new_venv_name} 1>/dev/null
+		echo "Activation de l'environnement virtuel \"${DJ_new_venv_name}\"..."
+		source ${DJ_new_venv_name}/bin/activate
+		echo "Installation de django dans l'environnement virtuel..."
+		pip install django 1>/dev/null
+		# Positionnement dans le répertoire des projets django
+		cd ${DJ_DIR_PROJECTS_PATH}
+		echo "Création du nouveau projet \"${1}\"..."
+		django-admin startproject ${1}
+		cd ${DJ_new_project}
+
+		echo -e "\nLe projet \"${1}\" à été créé avec l'environnement virtuel \"${DJ_new_venv_name}\"."
+		echo " Chemin du projet :                 	${DJ_new_project}"
+		echo " Chemin de l'environnement virtuel :	${DJ_new_venv_path}"
+	fi
+}
